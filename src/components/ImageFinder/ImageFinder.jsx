@@ -65,6 +65,7 @@ export const ImageFinder = () => {
     <ImageGallery hits={hits} />
     {!hits.length && !loading && <h2>Smth's wrong.. Don't worry.. Nothing really matters. Try again!</h2>}
     {loading && <Loader />}
+    {err && 'Nothing really matters. Try again!'}
     {hits.length && hits.length < totalPosts ? <Button onHandleClick={handleLoadMore}>{loading ? 'Loading' : 'Load more'} </Button> : null}
   </>)
 }
