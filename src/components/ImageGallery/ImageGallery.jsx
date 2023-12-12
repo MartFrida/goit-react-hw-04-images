@@ -3,11 +3,14 @@ import s from './ImageGallery.module.css'
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem'
 import React, { useState } from 'react'
 import { Modal } from 'components/Modal/Modal'
+import { useEffect } from 'react'
 
 export const ImageGallery = ({ hits }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [img, setImg] = useState(null);
-
+  useEffect(() => {
+    isOpenModal ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'visible'
+  }, [isOpenModal])
 
   const handleShowModal = (modalImage) => {
     setIsOpenModal(true);
@@ -15,7 +18,7 @@ export const ImageGallery = ({ hits }) => {
   }
 
   const handleCloseModal = () => {
-    setIsOpenModal(true);
+    setIsOpenModal(false);
   }
   return (
     <>
