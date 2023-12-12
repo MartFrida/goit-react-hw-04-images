@@ -1,41 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import s from './Searchbar.module.css'
 import { FaSearchengin } from "react-icons/fa6";
 
-export class Searchbar extends React.Component {
-  state = {
-    query: '',
-  }
+export const Searchbar = ({ handleSetSearchQuery }) => {
+  const [query, setQuery] = useState('');
 
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
-    this.props.handleSetSearchQuery(this.state.query)
+    handleSetSearchQuery(query)
   }
-
-  handleChangeQuery = e => {
-    this.setState({ query: e.target.value })
+  const handleChangeQuery = e => {
+    setQuery(e.target.value)
   }
-  render() {
-    return (
-      <header className={clsx(s.searchbar)}>
-        <form className={s.form} onSubmit={this.handleSubmit}>
+  return (
+    <header className={clsx(s.searchbar)}>
+      <form className={s.form} onSubmit={handleSubmit}>
 
-          <button className={s.button}>
-            <FaSearchengin size={25} />
-          </button>
+        <button className={s.button}>
+          <FaSearchengin size={25} />
+        </button>
 
-          <input
-            value={this.state.query}
-            onChange={this.handleChangeQuery}
-            className={s.input}
-            type="text"
-            placeholder="Search images and photos"
-          />
-        </form>
-      </header>
-    )
-  }
-
+        <input
+          value={query}
+          onChange={handleChangeQuery}
+          className={s.input}
+          type="text"
+          placeholder="Search images and photos"
+        />
+      </form>
+    </header>
+  )
 }
+
